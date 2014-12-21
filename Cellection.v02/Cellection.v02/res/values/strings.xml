@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Cellection</string>
+    <string name="title_activity_main">Cellection</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="home">Home</string>
+    <string name="maps">Maps</string>
+    <string name="operator">Network Operator</string>
+    <string name="signal_strength">Signal Strength</string>
+    <string name="title_activity_details">DetailsActivity</string>
+    <string name="button_send">Send</string>
+    <string name="location">Location</string>
+	<string name="action_settings">Settings</string>
+	<string name="gpsCoordinates">GPS Coordinates</string>
+</resources>

@@ -1,0 +1,158 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shapes"
+    android:fillViewport="true" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="${relativePackage}.${activityClass}" >
+
+        <org.codeandmagic.android.gauge.GaugeView
+            android:id="@+id/gaugeview"
+            android:layout_width="600px"
+            android:layout_height="600px"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:padding="20dp" />
+
+        <TextView
+            android:id="@+id/operatorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/gaugeview"
+            android:layout_below="@id/gaugeview"
+            android:layout_marginTop="31dp"
+            android:text="@string/operator"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/operator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/operatorLabel"
+            android:layout_below="@id/operatorLabel"
+            android:layout_marginTop="24dp"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/signalStrengthLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/operator"
+            android:layout_below="@id/operator"
+            android:layout_marginTop="31dp"
+            android:text="@string/signal_strength"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/signalStrength"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/signalStrengthLabel"
+            android:layout_below="@id/signalStrengthLabel"
+            android:layout_marginTop="24dp"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <!--
+        <TextView
+            android:id="@+id/signalStrengthLabelInDBm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/signalStrength"
+            android:layout_below="@id/signalStrength"
+            android:layout_marginTop="31dp"
+            android:text="@string/signal_strength"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/signalStrengthInDBm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/signalStrengthLabelInDBm"
+            android:layout_below="@id/signalStrengthLabelInDBm"
+            android:layout_marginTop="24dp"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        -->
+
+        <TextView
+            android:id="@+id/gpsCoordinatesLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/signalStrength"
+            android:layout_below="@id/signalStrength"
+            android:layout_marginTop="31dp"
+            android:text="@string/gpsCoordinates"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/gpsCoordinates"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/gpsCoordinatesLabel"
+            android:layout_below="@id/gpsCoordinatesLabel"
+            android:layout_marginTop="24dp"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/locationLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/gpsCoordinates"
+            android:layout_below="@id/gpsCoordinates"
+            android:layout_marginTop="31dp"
+            android:text="@string/location"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/locationLabel"
+            android:layout_below="@id/locationLabel"
+            android:layout_marginTop="24dp"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/locationLabel"
+            android:layout_below="@id/location"
+            android:layout_weight=".70"
+            android:background="@drawable/flat_selector"
+            android:onClick="onClick"
+            android:text="View Map"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/button1"
+            android:layout_below="@id/button1"
+            android:background="@drawable/flat_selector"
+            android:onClick="onClick"
+            android:text="Neighbouring Cell Towers"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/button2"
+            android:layout_below="@id/button2"
+            android:background="@drawable/flat_selector"
+            android:onClick="onClick"
+            android:text="Start Signal Strength service"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+
+</ScrollView>
