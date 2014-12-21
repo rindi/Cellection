@@ -1753,7 +1753,8 @@ containing a value of this type.
         public static final int activity_details=0x7f030018;
         public static final int activity_main=0x7f030019;
         public static final int activity_neighbours=0x7f03001a;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001b;
+        public static final int activity_view_dbreadings=0x7f03001b;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001c;
     }
     public static final class menu {
         public static final int activity_details=0x7f0e0000;

@@ -155,14 +155,10 @@ public class MainActivity extends Activity implements LocationListener {
 
 	private String getLocation(Location location) {
 		float accuracy = location.getAccuracy();
-
 		String locationString = "Indoor";
-
 		if (accuracy < 10)
 			locationString = "Outdoor";
-
 		locationString = locationString + " (Accuracy = " + Float.toString(accuracy) + " m)";
-
 		return locationString;
 	}
 

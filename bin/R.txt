@@ -510,7 +510,8 @@ int layout abc_simple_decor 0x7f030017
 int layout activity_details 0x7f030018
 int layout activity_main 0x7f030019
 int layout activity_neighbours 0x7f03001a
-int layout support_simple_spinner_dropdown_item 0x7f03001b
+int layout activity_view_dbreadings 0x7f03001b
+int layout support_simple_spinner_dropdown_item 0x7f03001c
 int menu activity_details 0x7f0e0000
 int menu activity_main 0x7f0e0001
 int raw gtm_analytics 0x7f050000

@@ -44,6 +44,7 @@ public class OperatorDBHelper extends SQLiteOpenHelper {
 		String query = "Select * from " + DB_NAME +" where Name = \"" + name + "\"";
 		SQLiteDatabase database = this.getWritableDatabase();
 		Cursor cursor = database.rawQuery(query, null);
+		database.close();
 		return cursor;
 	}
 

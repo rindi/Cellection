@@ -42,6 +42,7 @@ public class TechnologyDBHelper extends SQLiteOpenHelper {
 		String query = "SELECT * FROM " + DB_NAME + " WHERE Name = \"" + name + "\"";
 		SQLiteDatabase database = this.getWritableDatabase();
 		Cursor cursor = database.rawQuery(query, null);
+		database.close();
 		return cursor;
 	}
 
