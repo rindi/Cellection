@@ -45,6 +45,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.telephony.PhoneStateListener;
 import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;
@@ -126,8 +127,10 @@ public class MainActivity extends Activity implements LocationListener {
 		public void onSignalStrengthsChanged(SignalStrength signalStrength)
 		{
 			TextView operatorView = (TextView) findViewById(R.id.operator);
+			operatorView.setTextColor(Color.WHITE);
 			operatorView.setText(telephonyManager.getNetworkOperatorName());
 			TextView signalStrengthView = (TextView) findViewById(R.id.signalStrength);
+			signalStrengthView.setTextColor(Color.WHITE);
 			signalStrengthView.setText(getGsmSignalStrengthInDbm(signalStrength.getGsmSignalStrength()));
 			gaugeView.setTargetValue((100/31)*signalStrength.getGsmSignalStrength());
 			super.onSignalStrengthsChanged(signalStrength);
@@ -166,9 +169,11 @@ public class MainActivity extends Activity implements LocationListener {
 	@Override
 	public void onLocationChanged(Location location) {
 		TextView gpsCoordinatesView = (TextView) findViewById(R.id.gpsCoordinates);
+		gpsCoordinatesView.setTextColor(Color.WHITE);
 		gpsCoordinatesView.setText(getGpsCoordinates(location));
 
 		TextView locationView = (TextView) findViewById(R.id.location);
+		locationView.setTextColor(Color.WHITE);
 		locationView.setText(getLocation(location));
 	}
 
@@ -191,18 +196,8 @@ public class MainActivity extends Activity implements LocationListener {
 	}
 
 	public void onClick(View v) {
-
-		if(v.getId() == R.id.button1){
-			Intent intent = new Intent(this, DetailsActivity.class);
-			Bundle extras = new Bundle();
-			extras.putString("Operator", telephonyManager.getNetworkOperatorName());
-			startActivity(intent);   
-
-		}else if(v.getId() == R.id.button2){
-			Intent intent = new Intent(this, NeighboursActivity.class);
-			startActivity(intent);  
-
-		}else if(v.getId() == R.id.button3){
+		if(v.getId() == R.id.button3)
+		{
 			Intent intent = new Intent(this, SignalStrengthService.class);
 			Bundle extras = new Bundle();
 			extras.putDouble("Latitude", latitude);
@@ -211,5 +206,18 @@ public class MainActivity extends Activity implements LocationListener {
 			startService(intent);
 		}
 
+		else if(v.getId() == R.id.button1)
+		{
+			Intent intent = new Intent(this, DetailsActivity.class);
+			Bundle extras = new Bundle();
+			extras.putString("Operator", telephonyManager.getNetworkOperatorName());
+			startActivity(intent);   
+
+		}else if(v.getId() == R.id.button2)
+		{
+			Intent intent = new Intent(this, NeighboursActivity.class);
+			startActivity(intent);  
+
+		} 
 	}
 }

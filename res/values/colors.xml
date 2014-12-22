@@ -3,5 +3,6 @@
 
     <color name="blue_pressed">@android:color/holo_blue_dark</color>
     <color name="blue_normal">@android:color/holo_blue_light</color>
+    <color name="white">@android:color/white</color>
 
 </resources>

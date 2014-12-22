@@ -37,17 +37,17 @@ public class NeighboursActivity extends Activity {
 
 		TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 		GsmCellLocation cellLocation = (GsmCellLocation) telephonyManager.getCellLocation();
+		textGsmCellLocation.setText(" The statistics of this mobile device are : ");
 
 		String networkOperator = telephonyManager.getNetworkOperator();
 		String mobileCountryCode = networkOperator.substring(0, 3);
 		String mobileNetworkCode = networkOperator.substring(3);
-		textGsmCellLocation.setText("GSM Cell Location : ");
 		textMCC.setText("Mobile Country Code : " + mobileCountryCode);
 		textMNC.setText("Mobile Network Code : " + mobileNetworkCode);
 
 		int cellID = cellLocation.getCid();
 		//int locationAreaCode = cellLocation.getLac();
-		textGsmCellLocation.setText(cellLocation.toString());
+		//textGsmCellLocation.setText(cellLocation.toString());
 		textCID.setText("GSM Cell ID: " + String.valueOf(cellID));
 
 		TextView Neighboring = (TextView) findViewById(R.id.neighboring);
@@ -87,18 +87,19 @@ public class NeighboursActivity extends Activity {
 				else
 					dBm = String.valueOf(-113 + 2 * rssi) + " dBm";
 
-				for (int j = 1; j <= 3; j++) 
+				for (int j = 1; j <= 4; j++) 
 				{
 					TextView textView = new TextView(this);
 					LinearLayout outerLayout = new LinearLayout(this);
 					LinearLayout.LayoutParams textLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
 					textView.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT));
-					textView.setBackgroundResource(R.drawable.rect_pressed);
 					textView.setPadding(5, 5, 5, 5);
 					if(j==1)
-						textView.setText(String.valueOf(NeighboringList.get(i).getLac()));
+						textView.setText(String.valueOf(i+1));
 					else if(j==2)
+						textView.setText(String.valueOf(NeighboringList.get(i).getLac()));
+					else if(j==3)
 						textView.setText(String.valueOf(NeighboringList.get(i).getCid()));
 					else
 						textView.setText(dBm);

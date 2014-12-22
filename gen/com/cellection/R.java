@@ -1413,7 +1413,7 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f0b0005;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f09001c;
+        public static final int abc_search_url_text_holo=0x7f09001d;
         public static final int abc_search_url_text_normal=0x7f090017;
         public static final int abc_search_url_text_pressed=0x7f090018;
         public static final int abc_search_url_text_selected=0x7f090019;
@@ -1431,8 +1431,8 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f090006;
         public static final int common_signin_btn_light_text_focused=0x7f090007;
         public static final int common_signin_btn_light_text_pressed=0x7f090005;
-        public static final int common_signin_btn_text_dark=0x7f09001d;
-        public static final int common_signin_btn_text_light=0x7f09001e;
+        public static final int common_signin_btn_text_dark=0x7f09001e;
+        public static final int common_signin_btn_text_light=0x7f09001f;
         public static final int wallet_bright_foreground_disabled_holo_light=0x7f09000f;
         /** 
          Wallet colors to support consistent Wallet fragment holo dark UI in client application
@@ -1451,8 +1451,9 @@ containing a value of this type.
         public static final int wallet_hint_foreground_holo_light=0x7f090011;
         public static final int wallet_holo_blue_light=0x7f090015;
         public static final int wallet_link_text_light=0x7f090016;
-        public static final int wallet_primary_text_holo_light=0x7f09001f;
-        public static final int wallet_secondary_text_holo_dark=0x7f090020;
+        public static final int wallet_primary_text_holo_light=0x7f090020;
+        public static final int wallet_secondary_text_holo_dark=0x7f090021;
+        public static final int white=0x7f09001c;
     }
     public static final class dimen {
         public static final int abc_action_bar_default_height=0x7f0c0000;
@@ -1626,17 +1627,16 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f0d0001;
         public static final int action_menu_presenter=0x7f0d0002;
         public static final int action_mode_close_button=0x7f0d0039;
-        public static final int action_settings=0x7f0d0068;
+        public static final int action_settings=0x7f0d0069;
         public static final int activity_chooser_view_content=0x7f0d003a;
-        public static final int activity_neighbors=0x7f0d005f;
         public static final int adjust_height=0x7f0d0006;
         public static final int adjust_width=0x7f0d0007;
         public static final int always=0x7f0d0028;
         public static final int beginning=0x7f0d0025;
         public static final int book_now=0x7f0d0016;
-        public static final int button1=0x7f0d005c;
-        public static final int button2=0x7f0d005d;
-        public static final int button3=0x7f0d005e;
+        public static final int button1=0x7f0d005e;
+        public static final int button2=0x7f0d005f;
+        public static final int button3=0x7f0d005d;
         public static final int buyButton=0x7f0d0012;
         public static final int buy_now=0x7f0d0017;
         public static final int buy_with_google=0x7f0d0018;
@@ -1655,8 +1655,8 @@ containing a value of this type.
         public static final int expand_activities_button=0x7f0d003b;
         public static final int expanded_menu=0x7f0d0041;
         public static final int gaugeview=0x7f0d0053;
-        public static final int gpsCoordinates=0x7f0d0059;
-        public static final int gpsCoordinatesLabel=0x7f0d0058;
+        public static final int gpsCoordinates=0x7f0d005a;
+        public static final int gpsCoordinatesLabel=0x7f0d0059;
         public static final int grayscale=0x7f0d001b;
         public static final int gsmcelllocation=0x7f0d0061;
         public static final int holo_dark=0x7f0d000d;
@@ -1669,11 +1669,11 @@ containing a value of this type.
         public static final int image=0x7f0d003c;
         public static final int listMode=0x7f0d001d;
         public static final int list_item=0x7f0d003e;
-        public static final int location=0x7f0d005b;
-        public static final int locationLabel=0x7f0d005a;
+        public static final int location=0x7f0d005c;
+        public static final int locationLabel=0x7f0d005b;
         public static final int map=0x7f0d0051;
         public static final int match_parent=0x7f0d0014;
-        public static final int menu_settings=0x7f0d0067;
+        public static final int menu_settings=0x7f0d0068;
         public static final int middle=0x7f0d0027;
         public static final int mobileCountryCode=0x7f0d0062;
         public static final int mobileNetworkCode=0x7f0d0063;
@@ -1682,8 +1682,9 @@ containing a value of this type.
         public static final int never=0x7f0d002b;
         public static final int none=0x7f0d0008;
         public static final int normal=0x7f0d000a;
-        public static final int operator=0x7f0d0055;
-        public static final int operatorLabel=0x7f0d0054;
+        public static final int operator=0x7f0d0056;
+        public static final int operatorLabel=0x7f0d0055;
+        public static final int percentage=0x7f0d0054;
         public static final int production=0x7f0d000f;
         public static final int progress_circular=0x7f0d0004;
         public static final int progress_horizontal=0x7f0d0005;
@@ -1706,13 +1707,14 @@ containing a value of this type.
         public static final int showCustom=0x7f0d0021;
         public static final int showHome=0x7f0d0022;
         public static final int showTitle=0x7f0d0023;
-        public static final int signalStrength=0x7f0d0057;
-        public static final int signalStrengthLabel=0x7f0d0056;
+        public static final int signalStrength=0x7f0d0058;
+        public static final int signalStrengthLabel=0x7f0d0057;
+        public static final int slno=0x7f0d0066;
         public static final int split_action_bar=0x7f0d0033;
         public static final int strict_sandbox=0x7f0d0011;
         public static final int submit_area=0x7f0d004e;
         public static final int tabMode=0x7f0d001e;
-        public static final int tableLayout1=0x7f0d0066;
+        public static final int tableLayout1=0x7f0d0067;
         public static final int terrain=0x7f0d000c;
         public static final int title=0x7f0d0040;
         public static final int top_action_bar=0x7f0d0035;
@@ -1778,9 +1780,9 @@ containing a value of this type.
         public static final int abc_shareactionprovider_share_with=0x7f08002e;
         public static final int abc_shareactionprovider_share_with_application=0x7f08002f;
         public static final int accept=0x7f080002;
-        public static final int action_settings=0x7f08003b;
+        public static final int action_settings=0x7f08003c;
         public static final int app_name=0x7f080030;
-        public static final int button_send=0x7f080039;
+        public static final int button_send=0x7f08003a;
         /**   Text for notification shown when the Android Wear apps needs to be updated. Only shown on the wearable. [CHAR LIMIT=NONE] 
          */
         public static final int common_android_wear_notification_needs_update_text=0x7f080009;
@@ -1883,19 +1885,20 @@ containing a value of this type.
         public static final int create_calendar_message=0x7f080005;
         public static final int create_calendar_title=0x7f080004;
         public static final int decline=0x7f080003;
-        public static final int gpsCoordinates=0x7f08003c;
+        public static final int gpsCoordinates=0x7f08003d;
         public static final int hello_world=0x7f080032;
         public static final int home=0x7f080034;
-        public static final int location=0x7f08003a;
+        public static final int location=0x7f08003b;
         public static final int maps=0x7f080035;
         public static final int menu_settings=0x7f080033;
-        public static final int operator=0x7f080036;
-        public static final int signal_strength=0x7f080037;
+        public static final int operator=0x7f080037;
+        public static final int percentage=0x7f080036;
+        public static final int signal_strength=0x7f080038;
         public static final int store_picture_message=0x7f080001;
         public static final int store_picture_title=0x7f080000;
-        public static final int title_activity_details=0x7f080038;
+        public static final int title_activity_details=0x7f080039;
         public static final int title_activity_main=0x7f080031;
-        public static final int title_activity_neighbours=0x7f08003d;
+        public static final int title_activity_neighbours=0x7f08003e;
         /**  Text on a placeholder buy button when Google Play services is not
          available or up-to-date 
          */
