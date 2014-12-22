@@ -1,5 +1,15 @@
 package com.cellection;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -23,19 +33,31 @@ public class DetailsActivity extends FragmentActivity {
 	GPSTrackingService GPS;
 	GoogleMap map;
 	static String operator;
-	/*public static final String LOCATION_PREFERENCES = "LocPrefs";
-	SharedPreferences settings = getSharedPreferences(LOCATION_PREFERENCES, MODE_PRIVATE);
-	SharedPreferences.Editor prefEditor;
-	 */
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
-		    operator = extras.getString("Operator");
+			operator = extras.getString("Operator");
 		}
 
+		PoorNetworkDBHelper poorNetworkDBHelper = new PoorNetworkDBHelper(this);
+		ArrayList<String> data = poorNetworkDBHelper.getRecords();
+		ByteArrayInputStream bais = null;
+		try {
+			bais = new ByteArrayInputStream( poorNetworkDBHelper.getRecords().toString().getBytes("UTF-8") );
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		//ArrayList<String> data = poorNetworkDBHelper.getRecords();
+		Log.i("Data directly from DB",poorNetworkDBHelper.getRecords().toString());
+		Log.i("Data from DB",data.toString());
+		poorNetworkDBHelper.close();
+		
 		GPS = new GPSTrackingService(DetailsActivity.this);
 
 		setContentView(R.layout.activity_details);
@@ -49,15 +71,40 @@ public class DetailsActivity extends FragmentActivity {
 				map = ((MapFragment)getFragmentManager().findFragmentById(R.id.map)).getMap();
 			}
 
-			PoorNetworkDBHelper info = new PoorNetworkDBHelper(this);
-			String data = info.getRecord(operator).toString();
-			info.close();
-			Log.i("Data from DB",data);
-			
-			MarkerOptions marker = new MarkerOptions().position(new LatLng(latitude, longitude)).title("New Marker");
+			MarkerOptions marker = new MarkerOptions().position(new LatLng(latitude, longitude)).title("Initial location");
 			map.setMyLocationEnabled(true);
 			map.addMarker(marker);
+			String line = "";
 
+			InputStreamReader inputreader = new InputStreamReader(bais);
+			BufferedReader reader= new BufferedReader(inputreader);
+			List<LatLng> latLngList = new ArrayList<LatLng>();
+			String line1 = "";
+
+			try {
+				while( (line1 = reader.readLine()) != null) // Read until end of file
+				{
+				  double lat = Double.parseDouble(line1.split(",")[0]);
+				  double lon = Double.parseDouble(line1.split(",")[1]);
+				  latLngList.add(new LatLng(lat, lon));
+				}
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			// Add them to map
+			for(LatLng pos : latLngList)
+			{
+			  map.addMarker(new MarkerOptions()
+			        .position(pos)
+			        .title("Poor network here!"));
+			}
+
+			
 			CameraUpdate cameraUpdate= CameraUpdateFactory.newLatLng(new LatLng(latitude, longitude));
 			CameraUpdate zoom=CameraUpdateFactory.zoomTo(15);
 
@@ -77,6 +124,7 @@ public class DetailsActivity extends FragmentActivity {
 			// Ask user to enable GPS/network in settings
 			GPS.showSettingsAlert();
 		}
+
 
 	}
 

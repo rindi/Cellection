@@ -1,5 +1,6 @@
 package com.cellection;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import android.content.ContentValues;
@@ -50,4 +51,25 @@ public class PoorNetworkDBHelper extends SQLiteOpenHelper {
 		return cursor;
 	}
 
+	public ArrayList<String>  getRecords(){
+		String query = "SELECT * FROM " + DB_NAME +" LIMIT 5";
+		SQLiteDatabase database = this.getReadableDatabase();
+		Cursor cursor = database.rawQuery(query, null);
+		ArrayList<String> data = new ArrayList<String>();
+		if (cursor.moveToFirst()) {
+			if (cursor != null)
+			{
+				if (cursor.moveToFirst()) {
+					do{               
+						double Latitude = cursor.getDouble(cursor.getColumnIndex("Latitude"));
+						double Longitude = cursor.getDouble(cursor.getColumnIndex("Longitude"));
+						data.add(Latitude+ ","+Longitude);
+					}
+					while(cursor.moveToNext());  				
+				}
+			}
+			database.close();
+		}
+		return data;
+	}
 }

@@ -37,8 +37,10 @@ public class SignalStrengthService extends Service {
 	String operatorName;
 	private static final String TAG = "com.cellection.SignalStrengthService";
 	static Date setNotificationTime = new Date();
+	//Time between notifications 
+	public int value = 5;
+	//No 5 minute wait period for first notification on service start
 	boolean firstRun = true;
-	public int value = 1;
 
 	@Override
 	public IBinder onBind(Intent intent) {
