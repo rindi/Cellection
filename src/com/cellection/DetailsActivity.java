@@ -1,11 +1,15 @@
 package com.cellection;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
+
 import com.google.android.gms.maps.MapFragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.app.FragmentActivity;
+
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -18,10 +22,19 @@ public class DetailsActivity extends FragmentActivity {
 
 	GPSTrackingService GPS;
 	GoogleMap map;
-
+	static String operator;
+	/*public static final String LOCATION_PREFERENCES = "LocPrefs";
+	SharedPreferences settings = getSharedPreferences(LOCATION_PREFERENCES, MODE_PRIVATE);
+	SharedPreferences.Editor prefEditor;
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+		    operator = extras.getString("Operator");
+		}
 
 		GPS = new GPSTrackingService(DetailsActivity.this);
 
@@ -36,16 +49,21 @@ public class DetailsActivity extends FragmentActivity {
 				map = ((MapFragment)getFragmentManager().findFragmentById(R.id.map)).getMap();
 			}
 
+			PoorNetworkDBHelper info = new PoorNetworkDBHelper(this);
+			String data = info.getRecord(operator).toString();
+			info.close();
+			Log.i("Data from DB",data);
+			
 			MarkerOptions marker = new MarkerOptions().position(new LatLng(latitude, longitude)).title("New Marker");
 			map.setMyLocationEnabled(true);
 			map.addMarker(marker);
 
 			CameraUpdate cameraUpdate= CameraUpdateFactory.newLatLng(new LatLng(latitude, longitude));
-		    CameraUpdate zoom=CameraUpdateFactory.zoomTo(15);
+			CameraUpdate zoom=CameraUpdateFactory.zoomTo(15);
 
-		    map.moveCamera(cameraUpdate);
+			map.moveCamera(cameraUpdate);
 			map.animateCamera(zoom);
-/*
+			/*
 			Intent intent = new Intent(this, SignalStrengthService.class);
 			Bundle extras = new Bundle();
 			extras.putDouble("Latitude", latitude);

@@ -194,6 +194,8 @@ public class MainActivity extends Activity implements LocationListener {
 
 		if(v.getId() == R.id.button1){
 			Intent intent = new Intent(this, DetailsActivity.class);
+			Bundle extras = new Bundle();
+			extras.putString("Operator", telephonyManager.getNetworkOperatorName());
 			startActivity(intent);   
 
 		}else if(v.getId() == R.id.button2){

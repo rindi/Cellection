@@ -29,12 +29,11 @@ public class SignalStrengthService extends Service {
 
 	TelephonyManager telephonyManager;
 	MyPhoneStateListener MyListener;
-	public static final String LOCATION_PREFERENCES = "LocPrefs";
 
 	//Initial values
 	double latitude = 0;
 	double longitude = 0;
-	static int strength = 1,poorSignalFlag = 0;
+	static int strength = 1, poorSignalFlag = 0;
 	String operatorName;
 	private static final String TAG = "com.cellection.SignalStrengthService";
 	static Date setNotificationTime = new Date();
@@ -94,15 +93,8 @@ public class SignalStrengthService extends Service {
 		Log.d("Operator ID is ", String.valueOf(operatorID));
 		Log.d("Operator Name is ", operatorName);
 
-		CellUtil.checkAndInsertLocation(latitude, longitude, this);
+		Long locationID  = CellUtil.checkAndInsertLocation(latitude, longitude, this);
 
-
-		if(poorSignalFlag==1)
-		{
-			CellUtil.checkAndInsertPoorSignal(latitude, longitude, strength, operatorName, this);
-			poorSignalFlag=0;
-		}
-		
 		telephonyManager.listen(MyListener,PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
 		return Service.START_STICKY_COMPATIBILITY;
 	}
@@ -122,9 +114,8 @@ public class SignalStrengthService extends Service {
 		public void onSignalStrengthsChanged(SignalStrength signalStrength) {
 			super.onSignalStrengthsChanged(signalStrength);
 			strength = signalStrength.getGsmSignalStrength();
-
 			if (strength < 30) {
-				poorSignalFlag = 1;
+				poorSignalInsert();
 				sendNotification(strength);
 			}
 		}
@@ -162,5 +153,9 @@ public class SignalStrengthService extends Service {
 		}
 
 	};/* End of private Class */
+	public void poorSignalInsert()
+	{
+		Long poorSignalID = CellUtil.checkAndInsertPoorSignal(latitude, longitude, strength, operatorName, this);
+	}
 
 }
