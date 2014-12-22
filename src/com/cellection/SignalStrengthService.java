@@ -9,6 +9,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -28,17 +29,18 @@ public class SignalStrengthService extends Service {
 
 	TelephonyManager telephonyManager;
 	MyPhoneStateListener MyListener;
+	public static final String LOCATION_PREFERENCES = "LocPrefs";
 
 	//Initial values
 	double latitude = 0;
 	double longitude = 0;
-	int strength = 0;
-	String operatorName = "";
-	
+	static int strength = 1,poorSignalFlag = 0;
+	String operatorName;
 	private static final String TAG = "com.cellection.SignalStrengthService";
 	static Date setNotificationTime = new Date();
 	boolean firstRun = true;
-	
+	public int value = 1;
+
 	@Override
 	public IBinder onBind(Intent intent) {
 		// TODO Auto-generated method stub
@@ -49,6 +51,7 @@ public class SignalStrengthService extends Service {
 	@Override
 	public void onCreate() {
 		Log.i(TAG, "Service onCreate");
+
 	}
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
@@ -68,6 +71,7 @@ public class SignalStrengthService extends Service {
 			Bundle extras = intent.getExtras();
 			latitude = extras.getDouble("Latitude");
 			longitude = extras.getDouble("Longitude");
+			operatorName = extras.getString("Operator Name");
 		}
 
 		// Continue running until stopped
@@ -85,13 +89,19 @@ public class SignalStrengthService extends Service {
 		Log.d("Technology ID is ", String.valueOf(technologyID));
 
 		// Returns the alphabetic name of current registered operator.
-		operatorName = telephonyManager.getNetworkOperatorName();
+		String operatorName = telephonyManager.getNetworkOperatorName();
 		Long operatorID = CellUtil.checkAndInsertOperator(operatorName,this);
 		Log.d("Operator ID is ", String.valueOf(operatorID));
+		Log.d("Operator Name is ", operatorName);
 
 		CellUtil.checkAndInsertLocation(latitude, longitude, this);
-		
-		CellUtil.checkAndInsertPoorSignal(latitude, longitude, strength, operatorName, this);
+
+
+		if(poorSignalFlag==1)
+		{
+			CellUtil.checkAndInsertPoorSignal(latitude, longitude, strength, operatorName, this);
+			poorSignalFlag=0;
+		}
 		
 		telephonyManager.listen(MyListener,PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
 		return Service.START_STICKY_COMPATIBILITY;
@@ -112,14 +122,15 @@ public class SignalStrengthService extends Service {
 		public void onSignalStrengthsChanged(SignalStrength signalStrength) {
 			super.onSignalStrengthsChanged(signalStrength);
 			strength = signalStrength.getGsmSignalStrength();
+
 			if (strength < 30) {
+				poorSignalFlag = 1;
 				sendNotification(strength);
 			}
 		}
 
 		public int strength(SignalStrength signalStrength) {
 			return strength = signalStrength.getGsmSignalStrength();
-
 		}
 		//Send notification to the user when signal strength is poor
 		@SuppressLint("NewApi")
@@ -127,7 +138,7 @@ public class SignalStrengthService extends Service {
 
 		{
 			double timeDiff = (new Date()).getTime() - setNotificationTime.getTime();
-			if (timeDiff>1000*60*5||firstRun==true)
+			if (timeDiff>1000*60*value||firstRun==true)
 			{
 				Intent intent = new Intent();
 				PendingIntent pendingIntent = PendingIntent.getActivity(SignalStrengthService.this, 0, intent, 0);
@@ -135,7 +146,7 @@ public class SignalStrengthService extends Service {
 				Notification notification = new Notification.Builder(SignalStrengthService.this)
 				.setTicker("Signal Strength Notification")
 				.setContentTitle("Signal Strength Decreased")
-				.setContentText("The network signal strength has decreased to " + strength)
+				.setContentText("Signal strength has decreased to " + strength)
 				.setSmallIcon(R.drawable.alerticon)
 				.setAutoCancel(true)
 				.setContentIntent(pendingIntent).build();

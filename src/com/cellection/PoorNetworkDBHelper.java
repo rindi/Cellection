@@ -19,7 +19,7 @@ public class PoorNetworkDBHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		db.execSQL("CREATE TABLE "+ DB_NAME+ " (ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Latitude DOUBLE, Longitude DOUBLE, Signal INTEGER, Operator STRING);");
+		db.execSQL("CREATE TABLE "+ DB_NAME+ " (ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Latitude DOUBLE, Longitude DOUBLE, Signal INTEGER, Operator TEXT);");
 
 	}
 
@@ -47,7 +47,6 @@ public class PoorNetworkDBHelper extends SQLiteOpenHelper {
 		String query = "SELECT * FROM " + DB_NAME + " WHERE Operator = \"" + operator + "\"";
 		SQLiteDatabase database = this.getWritableDatabase();
 		Cursor cursor = database.rawQuery(query, null);
-		database.close();
 		return cursor;
 	}
 

@@ -45,13 +45,13 @@ public class DetailsActivity extends FragmentActivity {
 
 		    map.moveCamera(cameraUpdate);
 			map.animateCamera(zoom);
-
+/*
 			Intent intent = new Intent(this, SignalStrengthService.class);
 			Bundle extras = new Bundle();
 			extras.putDouble("Latitude", latitude);
 			extras.putDouble("Longitude", longitude);
 			intent.putExtras(extras);
-			startService(intent);
+			startService(intent);*/
 
 		}
 		else {

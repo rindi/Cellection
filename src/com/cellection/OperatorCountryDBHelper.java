@@ -51,7 +51,6 @@ public class OperatorCountryDBHelper extends SQLiteOpenHelper {
 				+ operatorID + "\" and " + "CountryID = \"" + countryID + "\"";
 		SQLiteDatabase database = this.getWritableDatabase();
 		Cursor cursor = database.rawQuery(query, null);
-		database.close();
 		return cursor;
 	}
 

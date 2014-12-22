@@ -97,8 +97,7 @@ public class CellUtil {
 		return operatorDBHelper.insertRecord(operatorDetails);
 	}
 
-	public static void insertOperatorCountry(Long operatorID, Long countryID,
-			Context signalStrengthService) {
+	public static void insertOperatorCountry(Long operatorID, Long countryID, Context signalStrengthService) {
 		OperatorCountryDBHelper operatorCountryDBHelper = new OperatorCountryDBHelper(signalStrengthService);
 		Cursor cursor = operatorCountryDBHelper.getOperatorCountryRow(operatorID, countryID);
 		boolean addRecord = true;
@@ -113,8 +112,7 @@ public class CellUtil {
 		Log.d("Operator Country Id is ", String.valueOf(id));
 	}
 
-	private static Long insertOperatorCountry(Long operatorID,Long countryID,
-			OperatorCountryDBHelper operatorCountryDBHelper) {
+	private static Long insertOperatorCountry(Long operatorID,Long countryID,OperatorCountryDBHelper operatorCountryDBHelper) {
 		Map<String, String> operatorDetails = new HashMap<String, String>();
 		operatorDetails.put("OperatorID", String.valueOf(operatorID));
 		operatorDetails.put("CountryID", String.valueOf(countryID));
@@ -150,7 +148,6 @@ public class CellUtil {
 		Long id = null;
 		if (cursor.moveToFirst()) {
 			id = cursor.getLong(0);
-			Log.d("Distance  is ", cursor.getString(5));
 			addReport = false;
 		}
 		if (addReport) {
@@ -163,9 +160,8 @@ public class CellUtil {
 		Map<String, String> reportDetails = new HashMap<String, String>();
 		reportDetails.put("Latitude", String.valueOf(latitude));
 		reportDetails.put("Longitude", String.valueOf(longitude));
-		reportDetails.put("Signal Strength", String.valueOf(strength));
-		reportDetails.put("Operator Name", name);
-
+		reportDetails.put("Signal", String.valueOf(strength));
+		reportDetails.put("Operator", name);
 		return poorNetworkDBHelper.insertRecord(reportDetails);
 	}
 

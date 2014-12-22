@@ -71,7 +71,6 @@ public class LocationDBHelper extends SQLiteOpenHelper {
 
 		SQLiteDatabase database = this.getWritableDatabase();
 		Cursor cursor = database.rawQuery(query, null);
-		database.close();
 		return cursor;
 	}
 }
